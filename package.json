@@ -1,0 +1,52 @@
+{
+  "name": "webgl-playground",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "webpack-dev-server --mode development",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "webpack-dev-server --open",
+    "build-dev": "webpack -p --mode development",
+    "build": "webpack -p --mode production",
+    "deploy": "NODE_ENV=production webpack -p",
+    "ts-build": "tsc"
+  },
+  "author": "liuxuefei",
+  "license": "MIT",
+  "dependencies": {
+    "@types/dat.gui": "^0.7.2",
+    "@types/gl-matrix": "^2.4.4",
+    "@types/react-css-modules": "^4.6.2",
+    "css-loader": "^1.0.1",
+    "dat.gui": "^0.7.3",
+    "gl-matrix": "^2.8.1",
+    "global": "^4.3.2",
+    "glslify-loader": "^2.0.0",
+    "node-sass": "^4.10.0",
+    "raw-loader": "^1.0.0",
+    "react": "^16.6.0",
+    "react-dom": "^16.6.0",
+    "regl": "^1.3.11",
+    "sass-loader": "^7.1.0",
+    "style-loader": "^0.23.1",
+    "ts-loader": "^5.3.0",
+    "ts-node": "^7.0.1",
+    "tslint": "^5.11.0"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.1.2",
+    "@babel/core": "^7.1.2",
+    "@babel/preset-env": "^7.1.0",
+    "@babel/preset-es2015": "^7.0.0-beta.53",
+    "@babel/preset-react": "^7.0.0",
+    "@types/react": "^16.4.18",
+    "@types/react-dom": "^16.0.9",
+    "babel-loader": "^8.0.4",
+    "image-webpack-loader": "^4.6.0",
+    "typescript": "^3.2.2",
+    "webpack": "^4.27.1",
+    "webpack-cli": "^3.1.2",
+    "webpack-dev-server": "^3.1.10"
+  }
+}
