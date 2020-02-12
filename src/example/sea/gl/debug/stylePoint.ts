@@ -1,7 +1,7 @@
 import { vec3 } from 'gl-matrix';
 import * as dat from 'dat.gui';
-import { hsv2rgb } from '../../utils/hsv2rgb';
-import { snoise2d as noise2d } from '../../utils/noise';
+import { hsv2rgb } from '../../../../utils/hsv2rgb';
+import { snoise2d as noise2d } from '../../../../utils/noise';
 
 const DEFAULT_COLOR = vec3.set(vec3.create(), 1, 1, 1);
 const POINT_AMOUNT = 36 * 1e4;

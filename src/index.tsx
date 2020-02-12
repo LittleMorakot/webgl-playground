@@ -1,6 +1,5 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-import { MainComponent } from './src/main';
 
 type MainProps = {
 
@@ -21,7 +20,7 @@ export class Main {
 
     public renderDom() {
         ReactDOM.render(
-            <MainComponent/>,
+            <div>home</div>,
             this.react_el,
         );
     }

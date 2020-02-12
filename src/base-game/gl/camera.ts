@@ -1,8 +1,8 @@
 import { mat4, mat3, vec4, vec3, quat, vec2 } from 'gl-matrix';
 import { Frustum } from '../../utils/frustum';
 import { halton } from '../../utils/halton';
-import { GameInput } from '../../input';
-import { Keys } from '../../input/keyBindings';
+import { GameInput } from '../game-input';
+import { Keys } from '../game-input/keyBindings';
 
 const CameraAxis = vec3.create();
 const scratchVec4 = vec4.create();

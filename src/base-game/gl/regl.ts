@@ -1,4 +1,4 @@
-import { GLState } from './state/state';
+import { GLState } from './gl-state';
 
 export type REGL = any;
 
