@@ -28,6 +28,7 @@ export = function (regl, loader:REGLLoader) {
     });
 
     function draw (state:GameState) {
+        console.log('draw');
         const glState = <GLState>state.glState;
         setup(glState, (context) => {
             regl.clear({

@@ -87,6 +87,7 @@ export class Game {
         });
 
         let lastTime = 0;
+        let skip = 0;
         this._tick = this._regl.frame((context) => {
             const start = 1000. * context.time;
             const deltaTime = start - lastTime;
@@ -106,8 +107,15 @@ export class Game {
             // tick game and render everything
             _state.interpolate(deltaTime);
             if (!contextLost) {
-                _glMain.draw(_state);
+                // _glMain.draw(_state);
+
+                skip++;
+                if (skip >= 120) {
+                    _glMain.draw(_state);
+                    skip = 0;
+                }
             }
+
         });
     }
 }
