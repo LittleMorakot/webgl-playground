@@ -1,6 +1,6 @@
-import { GLState } from './gl/state/state';
+import { GLState } from './gl/gl-state';
 import { REGLLoader } from './gl/regl';
-import { GameInput } from './input';
+import { GameInput } from './game-input';
 
 export class GameState {
     public glState:GLState;

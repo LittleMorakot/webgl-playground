@@ -1,7 +1,7 @@
 import { mat4, vec3 } from 'gl-matrix';
-import { REGLLoader } from './regl';
-import { GLState } from './state/state';
-import { GameState } from '../state';
+import { REGLLoader } from '../../../base-game/gl/regl';
+import { GLState } from '../../../base-game/gl/gl-state';
+import { GameState } from '../../../base-game/state';
 
 import glDebugBox = require('./debug/box');
 import glDebug2d = require('./debug/2d');

@@ -1,8 +1,8 @@
 import { vec3, mat4 } from 'gl-matrix';
-import { hsv2rgb } from '../../utils/hsv2rgb';
+import { hsv2rgb } from '../../../../utils/hsv2rgb';
 // const noiseVert = require('../glsl/test.glsl');
-import { snoise as noise3d } from '../../utils/noise3d';
-import { snoise2d as noise2d } from '../../utils/noise';
+import { snoise as noise3d } from '../../../../utils/noise3d';
+import { snoise2d as noise2d } from '../../../../utils/noise';
 
 const DEFAULT_COLOR = vec3.set(vec3.create(), 0, 0, 0);
 const POINT_AMOUNT = 36 * 1e4;

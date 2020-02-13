@@ -1,5 +1,4 @@
-import { REGL, REGLLoader } from './regl';
-import { GLState } from './state/state';
+import { REGL, REGLLoader } from '../../../base-game/gl/regl';
 
 // const skyBoxFrag = require('./glsl/sky_frag.glsl');
 // const skyBoxVert = require('./glsl/sky_vert.glsl');

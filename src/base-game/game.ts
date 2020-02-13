@@ -1,8 +1,7 @@
 import createREGL = require('regl');
 import { GameState } from './state';
 import { createREGLCache, REGLLoader } from './gl/regl';
-import glMain = require('./gl/main');
-import { GLState } from './gl/state/state';
+// import glMain = require('../gl/main');
 
 const FULLSCREEN_STYLE = {
     border: 0,
@@ -24,11 +23,15 @@ export class Game {
     private _glMain;
     private _element:HTMLDivElement;
 
-    constructor() {
-        this._element = document.createElement('div');
-        Object.assign(this._element.style, FULLSCREEN_STYLE);
-        document.body.appendChild(this._element);
-        this._canvas = this._createREGL();
+    constructor(glMain, containerElement?:HTMLDivElement) {
+        if (containerElement) {
+            this._element = containerElement;
+        } else {
+            this._element = document.createElement('div');
+            Object.assign(this._element.style, FULLSCREEN_STYLE);
+            document.body.appendChild(this._element);
+        }
+        this._canvas = this._createREGL(glMain);
         if (!this._regl || !this._reglLoader) {
             throw new Error('failed to initialize');
         }
@@ -41,7 +44,7 @@ export class Game {
         this.start();
     }
 
-    private _createREGL() {
+    private _createREGL(glMain) {
         const canvas = document.createElement('canvas');
         Object.assign(canvas.style, FULLSCREEN_STYLE);
         this._element.appendChild(canvas);
@@ -78,11 +81,13 @@ export class Game {
             contextLost = true;
         });
         _regl.on('restore', () => {
-            contextLost = false;
-            (_state.glState as GLState).restore();
+            // TODO: restore
+            // contextLost = false;
+            // (_state.glState as GLState).restore();
         });
 
         let lastTime = 0;
+        let skip = 0;
         this._tick = this._regl.frame((context) => {
             const start = 1000. * context.time;
             const deltaTime = start - lastTime;
@@ -102,8 +107,15 @@ export class Game {
             // tick game and render everything
             _state.interpolate(deltaTime);
             if (!contextLost) {
-                _glMain.draw(_state);
+                // _glMain.draw(_state);
+
+                skip++;
+                if (skip >= 120) {
+                    _glMain.draw(_state);
+                    skip = 0;
+                }
             }
+
         });
     }
 }
