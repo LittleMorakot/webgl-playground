@@ -9,7 +9,7 @@ uniform vec2 bounds;
 // #pragma glslify: list_hit = require('./hitable-list.glsl')
 
 float random(vec2 co){
-    return 2. * fract(sin(dot(co.xy ,vec2(12.9898,78.233))) * 43758.5453) - 1.;
+    return fract(sin(dot(co.xy ,vec2(12.9898,78.233))) * 43758.5453);
 }
 
 const int mat_dielectric = 3;
@@ -112,9 +112,9 @@ vec3 drawBackground(Ray r, vec2 screenPos) {
 }
 
 vec3 random_in_unit_sphere(vec3 p) {
-    float r1 = random(coord.xy / bounds);
-    float r2 = random(vec2(0, r1));
-    float r3 = random(vec2(0, r2));
+    float r1 = 2. * random(p.xy) - 1.;
+    float r2 = 2. * random(p.zy) - 1.;
+    float r3 = 2. * random(p.xz) - 1.;
     p = vec3(r1, r2, r3);
     return p;
 }
@@ -197,8 +197,6 @@ bool dispatch_scatter(in Ray r, Hit_record hit, out vec3 attenuation, out Ray sc
 }
 
 vec3 color(Ray r, Sphere sphere_list[3]) {
-    // bool list_hit_res = list_hit(sphere_list, r.origin, r.direction, t_min, t_max, rec);
-    // vec3 bgColor = drawBackground(r, screenPos);
     Hit_record rec;
     vec3 _color;
     vec3 total_attenuation = vec3(1., 1., 1.);
@@ -239,8 +237,8 @@ void main() {
     float sphere_radius = .5;
     Sphere sphere_1 = Sphere(sphere_center, sphere_radius, gray_metal);
 
-    vec3 sphere_2_center = vec3(0., -100.5, -2.);
-    float sphere_2_radius = 100.;
+    vec3 sphere_2_center = vec3(0., -60.5, -2.);
+    float sphere_2_radius = 60.;
     Sphere sphere_2 = Sphere(sphere_2_center, sphere_2_radius, gold_metal);
 
     vec3 sphere_3_center = vec3(-0.6, 0., -1.);
@@ -254,11 +252,17 @@ void main() {
     
 
     // get color
-    const int nsamples = 128;
+    const int nsamples = 64;
+    const float d = sqrt(float(nsamples));
     float u, v;
     Ray ray;
     vec3 _color = vec3(0., 0., 0.);
     for (int i = 0; i < nsamples; i++) {
+        float x = floor(float(nsamples) / d) / d;
+        float y = fract(float(nsamples) / d);
+        u = screenPos.x + x;
+        v = screenPos.y + y;
+
         u = screenPos.x + random(_color.xy + float(i));
         v = screenPos.y + random(_color.xy + float(i));
         ray = Ray(vec3(0., 0., 0.), vec3(vec2(u, v), -1. * bounds.y / 2.));
